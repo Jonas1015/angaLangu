@@ -1,12 +1,26 @@
 package com.nocturnalcodes.angalangu;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class CurrentWeather {
     private double temperature;
     private double windspeed;
     private double winddirection;
     private double weathercode;
     private int is_day;
+    private String timezone;
     private int time;
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
 
     public double getTemperature() {
         return temperature;
@@ -48,11 +62,20 @@ public class CurrentWeather {
         this.is_day = is_day;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
-    public void setTime(Int time) {
+    public String getFormtedTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+
+        formatter.setTimeZone(TimeZone.getTimeZone(timezone));
+
+        Date dateTime = new Date(time*1000);
+        return formatter.format(dateTime);
+    }
+
+    public void setTime(int time) {
         this.time = time;
     }
 }

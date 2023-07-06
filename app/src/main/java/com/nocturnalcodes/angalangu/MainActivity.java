@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         double latitude =  37.8267;
         double longitude =  -122.4233;
 //        String forecastURL = "https://dark-sky.p.rapidapi.com/{" + latitude + "},{" + longitude + "}";
-        String forecastURL = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current_weather=true&timezone=Africa/Dar_es_Salaam&hourly=temperature_2m,relativehumidity_2m,windspeed_10m";
+        String forecastURL = "https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current_weather=true&timezone=Africa/Dar_es_Salaam&hourly=temperature_2m,relativehumidity_2m,windspeed_10m&timeformat=unixtime";
         if(isNetworkAvailable()){
             OkHttpClient client = new OkHttpClient();
 
@@ -82,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
         currentWeather.setIs_day(current_weather.getInt("is_day"));
         currentWeather.setWinddirection(current_weather.getDouble("winddirection"));
         currentWeather.setWindspeed(current_weather.getDouble("windspeed"));
+        currentWeather.setTimezone(forecast.getString("timezone"));
 
+        Log.d(TAG, "time got:" + currentWeather.getFormtedTime());
         return currentWeather;
     }
 
