@@ -4,7 +4,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView openMeteo = findViewById(R.id.openMeteoAttribution);
+        openMeteo.setMovementMethod(LinkMovementMethod.getInstance());
+
         String X_RapidAPI_Key = "5c4393051qfmsha314ba1f01a8bf7p1a8dd9jsn2148f5e3255e";
         String X_RapidAPI_Host = "dark-sky.p.rapidapi.com";
         double latitude =  37.8267;
